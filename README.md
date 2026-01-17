@@ -59,6 +59,20 @@ corresponding blocks with sensible default components to ensure that the
 five-block structure is always maintained.
 
 ---
+## Application Screenshots
+
+### 1. Initial State (No Diagram Generated)
+This screen shows the application before any input is provided.
+
+![Initial State](/screenshots/home-empty.png)
+
+
+### 2. Generated Block Diagram
+This screen shows a generated block diagram for an electronics product
+(e.g., smart doorbell with camera and motion sensor).
+
+![Generated Diagram](screenshots/diagram-generated.png)
+
 
 ## Run Locally
 
@@ -66,16 +80,4 @@ five-block structure is always maintained.
 npm install
 npm run dev
 
-## Application Screenshots
 
-### 1. Initial State (No Diagram Generated)
-This screen shows the application before any input is provided.
-
-![Initial State](/screenshots/home-empty.png)
----
-
-### 2. Generated Block Diagram
-This screen shows a generated block diagram for an electronics product
-(e.g., smart doorbell with camera and motion sensor).
-
-![Generated Diagram](screenshots/diagram-generated.png)
