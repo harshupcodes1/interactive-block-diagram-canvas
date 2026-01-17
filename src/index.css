@@ -1,0 +1,189 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Interactive Block Diagram Canvas Design System
+   Blueprint-inspired technical aesthetic */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Dark blueprint canvas theme */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 14%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 14%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 199 89% 48%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 199 89% 48%;
+    --accent-foreground: 222 47% 11%;
+
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 25%;
+    --input: 217 33% 25%;
+    --ring: 199 89% 48%;
+
+    --radius: 0.5rem;
+
+    /* Block-specific colors */
+    --block-power: 25 95% 53%;
+    --block-power-bg: 25 95% 15%;
+    --block-inputs: 142 71% 45%;
+    --block-inputs-bg: 142 71% 12%;
+    --block-processing: 199 89% 48%;
+    --block-processing-bg: 199 89% 15%;
+    --block-outputs: 270 67% 47%;
+    --block-outputs-bg: 270 67% 15%;
+    --block-peripherals: 174 72% 40%;
+    --block-peripherals-bg: 174 72% 12%;
+
+    /* Canvas */
+    --canvas-bg: 222 47% 8%;
+    --canvas-grid: 217 33% 20%;
+    --canvas-dot: 217 33% 25%;
+
+    /* Shadows and effects */
+    --glow-primary: 0 0 20px hsl(199 89% 48% / 0.3);
+    --glow-power: 0 0 15px hsl(25 95% 53% / 0.4);
+    --glow-inputs: 0 0 15px hsl(142 71% 45% / 0.4);
+    --glow-processing: 0 0 15px hsl(199 89% 48% / 0.4);
+    --glow-outputs: 0 0 15px hsl(270 67% 47% / 0.4);
+    --glow-peripherals: 0 0 15px hsl(174 72% 40% / 0.4);
+
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 199 89% 48%;
+    --sidebar-primary-foreground: 222 47% 11%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217 33% 25%;
+    --sidebar-ring: 199 89% 48%;
+  }
+
+  .dark {
+    /* Same as root - dark theme is default */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  /* Blueprint grid pattern for canvas */
+  .canvas-grid {
+    background-color: hsl(var(--canvas-bg));
+    background-image: 
+      radial-gradient(circle, hsl(var(--canvas-dot)) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  /* Block node styles */
+  .block-node {
+    @apply rounded-lg border-2 backdrop-blur-sm transition-all duration-200;
+    min-width: 220px;
+  }
+
+  .block-node:hover {
+    transform: translateY(-2px);
+  }
+
+  .block-power {
+    @apply border-block-power bg-block-power-bg;
+    box-shadow: var(--glow-power);
+  }
+
+  .block-inputs {
+    @apply border-block-inputs bg-block-inputs-bg;
+    box-shadow: var(--glow-inputs);
+  }
+
+  .block-processing {
+    @apply border-block-processing bg-block-processing-bg;
+    box-shadow: var(--glow-processing);
+  }
+
+  .block-outputs {
+    @apply border-block-outputs bg-block-outputs-bg;
+    box-shadow: var(--glow-outputs);
+  }
+
+  .block-peripherals {
+    @apply border-block-peripherals bg-block-peripherals-bg;
+    box-shadow: var(--glow-peripherals);
+  }
+
+  /* Glow button effect */
+  .btn-glow {
+    @apply relative overflow-hidden;
+    transition: all 0.3s ease;
+  }
+
+  .btn-glow::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: linear-gradient(135deg, transparent 0%, hsl(var(--primary) / 0.2) 50%, transparent 100%);
+  }
+
+  .btn-glow:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Input field glow */
+  .input-glow:focus {
+    box-shadow: var(--glow-primary);
+  }
+
+  /* Panel styling */
+  .panel-glass {
+    @apply bg-card/90 backdrop-blur-md border border-border rounded-xl;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--block-inputs)) 100%);
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 10px hsl(var(--primary) / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 25px hsl(var(--primary) / 0.5);
+    }
+  }
+}
